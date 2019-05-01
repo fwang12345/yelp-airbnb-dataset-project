@@ -18,7 +18,7 @@ app.controller('loginController', function($scope, $http) {
       console.log(response);
       if (response.result === "success") {
         // After you've written the INSERT query in routes/index.js, uncomment the following line
-        // window.location.href = "http://localhost:8081/dashboard"
+        window.location.href = "http://localhost:8081/dashboard"
       }
     });
     request.error(function(err) {
