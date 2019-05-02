@@ -21,56 +21,26 @@
         <span class="navbar-brand center">CIS550 HW2</span>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="/dashboard">Dashboard</a>
+                <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
                 <a class="nav-item nav-link" href="/reference">Reference</a>
-                <a class="nav-item nav-link" href="/recommend">Recommendation</a>
+                <a class="nav-item nav-link active" href="/recommend">Recommendation</a>
             </div>
         </div>
     </nav>
-    <div class="container movie-container" ng-controller="testControl">
+    <div class="container movie-container" ng-controller="recommendControl">
         <div class="jumbotron">
             <div class="form">
-                <select ng-model="city" ng-options="x for x in cities"></select>
+                <form>
+                    <div class="form-group">
+                        <label class="h2" for="listing_id">
+                            Listing ID
+                        </label>
+                        <input type="number" class="form-control" id="listing_id" placeholder="Enter Listing ID" ng-model="id">
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="recommend(id)">Submit</button>
+                </form>
             </div>
-            <div class="form">
-                <button type="submit" class="btn btn-primary" ng-click="test(city)">Submit</button>
-            </div>
-            <div class="container">
-                <table ng-show="show" class="table table-bordered">
-                    <thead>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Bedrooms</th>
-                        <th>Beds</th>
-                        <th>Price</th>
-                        <th>Rating</th>
-                    </thead>
-                    <tr ng-repeat="x in listing">
-                        <td>{{x.id}}</td>
-                        <td>{{x.name}}</td>
-                        <td>{{x.bedrooms}}</td>
-                        <td>{{x.beds}}</td>
-                        <td>{{x.price}}</td>
-                        <td>{{x.rating}}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="container">
-                <table ng-show="show" class="table table-bordered">
-                    <thead>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Reviews</th>
-                        <th>Rating</th>
-                    </thead>
-                    <tr ng-repeat="x in business">
-                        <td>{{x.name}}</td>
-                        <td>{{x.address}}</td>
-                        <td>{{x.review_count}}</td>
-                        <td>{{x.rating}}</td>
-                    </tr>
-                </table>
-            </div>
+            
         </div>
     </div>
     <button type="button" class="btn btn-light back" onclick="window.location.href = 'http://localhost:8081/dashboard'">Back</button>

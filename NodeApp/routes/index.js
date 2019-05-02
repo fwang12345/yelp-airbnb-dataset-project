@@ -6,10 +6,10 @@ var path = require('path');
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: 'fling.seas.upenn.edu',
-  user: '(your pennkey)',
-  password: '(your password)',
-  database: '(your pennkey)'
+  host: 'cis450project.cvzijce8kecp.us-east-1.rds.amazonaws.com',
+  user: 'cis450project',
+  password: 'cis450project',
+  database: 'cis450project'
 });
 
 connection.connect(function(err) {
@@ -33,6 +33,10 @@ router.get('/reference', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'reference.html'));
 });
 
+router.get('/recommend', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'recommend.html'));
+});
+
 // To add a new page, use the templete below
 /*
 router.get('/routeName', function(req, res) {
@@ -47,8 +51,8 @@ router.post('/login', function(req, res) {
 
   // req.body contains the json data sent from the loginController
   // e.g. to get username, use req.body.username
-
-  var query = "INSERT query here"; /* Write your query here and uncomment line 21 in javascripts/app.js*/
+  var query = `INSERT INTO users VALUES ('${req.body.username}', '${req.body.password}')
+  ON DUPLICATE KEY UPDATE password='${req.body.password}'`; /* Write your query here and uncomment line 21 in javascripts/app.js*/
   connection.query(query, function(err, rows, fields) {
     console.log("rows", rows);
     console.log("fields", fields);
@@ -60,7 +64,38 @@ router.post('/login', function(req, res) {
     }
   });
 });
+router.get('/listing/:city', function(req, res) {
+  var city = req.params.city
+  var query = `SELECT *
+               FROM cis450project.listing
+               WHERE city = '${city}'
+               ORDER BY rating DESC
+               LIMIT 10`;
 
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      
+    }
+  });
+});
+router.get('/business/:city', function(req, res) {
+  var city = req.params.city
+  var query = `SELECT *
+               FROM cis450project.business
+               WHERE city = '${city}'
+               ORDER BY review_count DESC, rating DESC
+               LIMIT 10`;
+
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      
+    }
+  });
+});
 // template for GET requests
 /*
 router.get('/routeName/:customParameter', function(req, res) {
