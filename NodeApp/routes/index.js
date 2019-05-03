@@ -29,8 +29,8 @@ router.get('/dashboard', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'dashboard.html'));
 });
 
-router.get('/reference', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'reference.html'));
+router.get('/add', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'add.html'));
 });
 
 router.get('/recommend', function(req, res) {
