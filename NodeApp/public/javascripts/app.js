@@ -27,6 +27,17 @@ app.controller('loginController', function ($scope, $http) {
     });
   };
 });
+
+app.controller('listingController', function ($scope, $http) {
+  $scope.orderBy = ["Name","Price", "Rating"];
+  $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10+"];
+  $scope.cities = ["Las Vegas", "city2", "city3"];
+
+  $scope.orderByThis = function(order) {
+    console.log(order);
+  };
+});
+
 app.controller('createController', function ($scope, $http) {
   $scope.verifyCreate = function () {
     // To check in the console if the variables are correctly storing the input:

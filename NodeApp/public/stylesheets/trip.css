@@ -1,0 +1,33 @@
+.housing {
+    color: #0033CC;
+}
+.activities {
+    color: #0066FF;
+}
+.day {
+    color: #000099;
+}
+.restaurant {
+    color: #0099FF;
+}
+.jumbotron {
+    background-color: #f3f4f7;
+    width: 150px;
+    margin: 0 5em 0 5em;
+}
+
+.week {
+    display: table;
+    width: 100%;
+    table-layout: fixed;    /* For cells of equal size */
+}
+.week span {
+    display: table-cell;
+    text-align: center;
+}
+
+.div {
+    display: inline;
+    margin: 0 1em 0 1em;
+    width: 30%;
+}

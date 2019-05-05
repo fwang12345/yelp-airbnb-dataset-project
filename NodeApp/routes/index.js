@@ -25,8 +25,16 @@ router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
 });
 
+router.get('/trip', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'trip.html'));
+});
+
 router.get('/newAccount', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'new_account.html'));
+});
+
+router.get('/listing', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'listing.html'));
 });
 
 router.get('/dashboard', function(req, res) {
@@ -40,6 +48,8 @@ router.get('/add', function(req, res) {
 router.get('/recommend', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'recommend.html'));
 });
+
+
 
 // To add a new page, use the templete below
 /*
