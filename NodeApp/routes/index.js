@@ -62,14 +62,6 @@ router.get('/add', function(req, res) {
   }
 });
 
-router.get('/recommend', function(req, res) {
-  if (sessionStorage.getItem('user') == null) {
-    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
-  } else {
-    res.sendFile(path.join(__dirname, '../', 'views', 'recommend.html'));
-  }
-});
-
 
 
 // To add a new page, use the templete below
