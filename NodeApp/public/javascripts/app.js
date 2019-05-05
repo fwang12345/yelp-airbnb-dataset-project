@@ -16,6 +16,7 @@ app.controller('loginController', function ($scope, $http) {
         password = response[0].password;
         if (password == $scope.password) {
           console.log("Success");
+          sessionStorage.setItem('user', $scope.username);
           window.location.href = "http://localhost:8081/dashboard"
         } else {
           console.log("Incorrect password:", $scope.password);
