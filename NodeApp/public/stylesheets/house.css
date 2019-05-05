@@ -1,0 +1,14 @@
+
+.form-inline {
+  display: table;
+  width: 100%;
+  table-layout: fixed;    /* For cells of equal size */
+}
+.form-inline label {
+  display: table-cell;
+  text-align: center;
+}
+
+.form-inline {
+  margin: 5px 0 5px 0; /* top right bottom left */
+}
