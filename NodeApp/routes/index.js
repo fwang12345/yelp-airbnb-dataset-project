@@ -25,6 +25,10 @@ router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
 });
 
+router.get('/newAccount', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'new_account.html'));
+});
+
 router.get('/dashboard', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'dashboard.html'));
 });
@@ -45,7 +49,20 @@ router.get('/routeName', function(req, res) {
 */
 
 // Login uses POST request
-router.post('/login', function(req, res) {
+router.get('/login', function(req, res) {
+  var user = req.query.username;
+  var query = `SELECT password FROM cis450project.users
+               WHERE username = '${user}'`;
+  connection.query(query, function(err, rows, fields) {
+    console.log("rows", rows);
+    console.log("fields", fields);
+    if (err) console.log('insert error: ', err);
+    else {
+      res.json(rows)
+    }
+  });
+});
+router.post('/create', function(req, res) {
   // use console.log() as print() in case you want to debug, example below:
   // console.log(req.body); will show the print result in your terminal
 
