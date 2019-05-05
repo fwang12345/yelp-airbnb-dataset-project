@@ -84,6 +84,12 @@ app.controller('createController', function ($scope, $http) {
     });
   };
 });
+
+app.controller('dashboardControl', function($scope, $http) {
+  var request = $http.get()
+  $scope.trips = 
+});
+
 app.controller('testControl', function ($scope, $http) {
   $scope.cities = ["Las Vegas", "city2", "city3"];
   $scope.test = function (city) {

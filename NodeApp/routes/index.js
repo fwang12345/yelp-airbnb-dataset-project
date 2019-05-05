@@ -112,6 +112,9 @@ router.post('/create', function(req, res) {
     }
   });
 });
+router.get('/trips/:user'), function(req, res) {
+  
+}
 router.get('/listing/:city', function(req, res) {
   var city = req.params.city
   var query = `SELECT *
