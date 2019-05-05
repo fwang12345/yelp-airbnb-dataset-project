@@ -26,7 +26,11 @@ router.get('/', function(req, res) {
 });
 
 router.get('/trip', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'trip.html'));
+  if (sessionStorage.getItem('user') == null) {
+    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../', 'views', 'trip.html'));
+  }
 });
 
 router.get('/newAccount', function(req, res) {
@@ -34,19 +38,35 @@ router.get('/newAccount', function(req, res) {
 });
 
 router.get('/listing', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'listing.html'));
+  if (sessionStorage.getItem('user') == null) {
+    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../', 'views', 'listing.html'));
+  }
 });
 
 router.get('/dashboard', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'dashboard.html'));
+  if (sessionStorage.getItem('user') == null) {
+    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../', 'views', 'dashboard.html'));
+  }
 });
 
 router.get('/add', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'add.html'));
+  if (sessionStorage.getItem('user') == null) {
+    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../', 'views', 'add.html'));
+  }
 });
 
 router.get('/recommend', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'views', 'recommend.html'));
+  if (sessionStorage.getItem('user') == null) {
+    res.sendFile(path.join(__dirname, '../', 'views', 'login.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../', 'views', 'recommend.html'));
+  }
 });
 
 
