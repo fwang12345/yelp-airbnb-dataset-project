@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -30%);
   font-size: 32px;
-  color: #fff;
+  color: #000;
 }
 
 .login-container {
@@ -22,7 +22,8 @@
   margin: 10px 0;
   width: 250px;
   height: 36px;
-  border: none;
+  border: 1px;
+  border-style: solid;
   padding: 2px 16px;
   box-sizing: border-box;
   border-radius: 20px;
