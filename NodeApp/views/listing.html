@@ -5,119 +5,140 @@
     <title>Create a New Account</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
     <script src="javascripts/app.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="/stylesheets/common.css" rel="stylesheet">
     <link href="/stylesheets/house.css" rel="stylesheet">
     <style>
         /* Set the size of the div element that contains the map */
         #map {
-            height: 400px;  /* The height is 400 pixels */
-            width: 100%;  /* The width is the width of the web page */
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
         }
     </style>
 </head>
 
 <body>
-
-<div class="container listing-container" ng-controller="listingController">
-    <div class="jumbotron" >
-        <div class="top">
-            <div class="h5">Categories </div>
-
-            <label >City
-                <select class="dropdown"   ng-model="selectedCity" ng-options="city for city in cities"></select>
-            </label>
-
-
-        </div>
-        <form class="form-inline" id="top">
-            <label >Beds
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-            <label>Zipcode
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-
-            </label>
-        </form>
-        <form class="form-inline" >
-            <label>Bedrooms
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-            <label>Bathrooms
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-        </form>
-        <form class="form-inline" >
-            <div class="genres-container">
-                <label >Order By:
-                    <div class="orderBy" ng-repeat="type in orderBy" ng-click="orderByThis(type)">{{orderBy.type}}</div>
-                </label>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand center">CIS550 HW2</span>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/dashboard">Dashboard</a>
+                <a class="nav-item nav-link" href="/listing">Listing</a>
+                <a class="nav-item nav-link" href="/add">Add</a>
+                <a class="nav-item nav-link" href="/house">House</a>
             </div>
-        </form>
+        </div>
+    </nav>
+    <div class="container listing-container" ng-controller="listingController">
+        <div class="jumbotron">
+            <div class="top">
+                <div class="h5">Categories </div>
 
-    </div>
+                <label>City
+                    <select class="dropdown" ng-model="selectedCity" ng-options="city for city in cities"></select>
+                </label>
 
-<div class="container bottom-container">
-    <h3>Listings:</h3>
-    <div class="table">
-        <table ng-show="show" class="table table-bordered">
-            <thead>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Bedrooms</th>
-            <th>Beds</th>
-            <th>Price</th>
-            <th>Rating</th>
-            </thead>
-            <tr ng-repeat="x in listing">
-                <td>{{x.id}}</td>
-                <td>{{x.name}}</td>
-                <td>{{x.bedrooms}}</td>
-                <td>{{x.beds}}</td>
-                <td>{{x.price}}</td>
-                <td>{{x.rating}}</td>
-            </tr>
-        </table>
-    </div>
 
-    <div class="container map-container">
-        <div id="map"></div>
-        <div class="form">
-            <form>
-                <div class="form-group">
-                    <label class="h2" for="listing_id">
-                        Listing ID
-                    </label>
-                    <input type="number" class="form-control" id="listing_id" placeholder="Enter Listing ID" ng-model="id">
-                </div>
-                <button type="submit" class="btn btn-primary" ng-click="recommend(id)">Submit</button>
+            </div>
+            <form class="form-inline" id="top">
+                <label>Beds
+                    <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                </label>
+                <label>Zipcode
+                    <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+
+                </label>
             </form>
+            <form class="form-inline">
+                <label>Bedrooms
+                    <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                </label>
+                <label>Bathrooms
+                    <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                </label>
+            </form>
+            <form class="form-inline">
+                <div class="genres-container">
+                    <label>Order By:
+                        <div class="orderBy" ng-repeat="type in orderBy" ng-click="orderByThis(type)">{{orderBy.type}}
+                        </div>
+                    </label>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="container bottom-container">
+            <h3>Listings:</h3>
+            <div class="table">
+                <table ng-show="show" class="table table-bordered">
+                    <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Bedrooms</th>
+                        <th>Beds</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                    </thead>
+                    <tr ng-repeat="x in listing">
+                        <td>{{x.id}}</td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.bedrooms}}</td>
+                        <td>{{x.beds}}</td>
+                        <td>{{x.price}}</td>
+                        <td>{{x.rating}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="container map-container">
+                <div id="map"></div>
+                <div class="form">
+                    <form>
+                        <div class="form-group">
+                            <label class="h2" for="listing_id">
+                                Listing ID
+                            </label>
+                            <input type="number" class="form-control" id="listing_id" placeholder="Enter Listing ID"
+                                ng-model="id">
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="recommend(id)">Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- Include these before the end of body tag in every HTML file -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<script>
-    // Initialize and add the map
-    function initMap() {
-        // The location of Uluru
-        var uluru = {lat: -25.344, lng: 131.036};
-        // The map, centered at Uluru
-        var map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 4, center: uluru});
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({position: uluru, map: map});
-    }
-</script>
-<script async defer
+    <!-- Include these before the end of body tag in every HTML file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: -25.344, lng: 131.036 };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 4, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+    <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0ZwDNT51Eea_HbQ6L3PmNpM8YZcKtV9w&callback=initMap">
-</script>
+        </script>
 
 </body>
 
