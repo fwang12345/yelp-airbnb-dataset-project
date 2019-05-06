@@ -231,10 +231,11 @@ router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
   var beds = req.params.beds
   var rooms = req.params.rooms
   var baths = req.params.baths
+  var category = req.params.category
   var query = `SELECT *
                FROM cis450project.listing
                WHERE city = '${city}' AND beds >= ${beds} AND bedrooms >= ${rooms} AND bathrooms >= ${baths}
-               ORDER BY reviews DESC, rating DESC
+               ORDER BY ${} DESC, rating DESC
                LIMIT 10`;
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);
@@ -246,13 +247,13 @@ router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
 });
 router.get('/bus/:city/:category', function(req, res) {
   var city = req.params.city
-  var category = req.params.category
-  var query = `SELECT b.business_id, name, address, city, state, zipcode, stars, reviews
+  var category = req.params.category;
+  var query = `SELECT business_id, name, address, city, state, zipcode, stars, reviews
               FROM cis450project.categories 
               NATURAL JOIN 
               cis450project.business
               WHERE city = '${city}' AND
-              WHERE category ='${category}'
+              category ='${category}'
               ORDER BY reviews DESC, stars DESC
               LIMIT 10`;
   connection.query(query, function(err, rows, fields) {
