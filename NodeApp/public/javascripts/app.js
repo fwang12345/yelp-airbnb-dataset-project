@@ -124,9 +124,19 @@ app.controller('loginController', function ($scope, $http) {
 app.controller('listingController', function ($scope, $http) {
   $scope.orderByHousing = ["Name","Price", "Rating"];
   $scope.orderByActivity = ["Name","Rating", "Number of Reviews"];
-  $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10+"];
-  $scope.cities = ["Las Vegas", "city2", "city3"];
-
+  $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10"];
+  $scope.cities = ["Toronto", "Montreal", "Las Vegas", "Henderson"];
+  $scope.searchHouse = function(city, beds, rooms, baths) {
+    if (city != null && beds != null && rooms != null && baths != null) {
+      $scope.show = false;
+      var request = $http.get(`/house/${city}/${beds}/${rooms}/${baths}`);
+      request.success(function (response) {
+        // success
+        $scope.listing = response;
+        $scope.show = true;
+      });
+    }
+  }
   $scope.orderByThis = function(order) {
     console.log(order);
   };

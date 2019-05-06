@@ -35,22 +35,24 @@
 
             <div ng-if="category == 'Housing'">
                 <form class="form-inline" id="top">
-                    <label >Beds
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    <label>City
+                        <select class="dropdown" ng-model="city" ng-options="city for city in cities"></select>
                     </label>
-                    <label>Zipcode
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-
+                    <label>Beds
+                        <select class="dropdown" ng-model="beds" ng-options="num for num in nums"></select>
                     </label>
-                </form>
-                <form class="form-inline" >
                     <label>Bedrooms
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="rooms" ng-options="num for num in nums"></select>
                     </label>
                     <label>Bathrooms
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="baths" ng-options="num for num in nums"></select>
                     </label>
+                    <!-- <label>Zipcode
+                        <select class="dropdown" ng-model="number2" ng-options="num for num in nums"></select>
+
+                    </label> -->
                 </form>
+                <button type="submit" class="btn btn-primary" ng-click="searchHouse(city, beds, rooms, baths)">Search</button>
                 <form class="form-inline" >
                     <div class="genres-container">
                         <label >Order By:
@@ -62,19 +64,19 @@
             <div ng-cloak ng-if="category == 'Restaurant'">
                 <form class="form-inline" id="top">
                     <label >Category
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="number1" ng-options="num for num in nums"></select>
                     </label>
                     <label>Zipcode
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="number2" ng-options="num for num in nums"></select>
 
                     </label>
                 </form>
                 <form class="form-inline" >
                     <label>Min Rating
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="number3" ng-options="num for num in nums"></select>
                     </label>
                     <label>Max Rating
-                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                        <select class="dropdown" ng-model="number4" ng-options="num for num in nums"></select>
                     </label>
                 </form>
                 <form class="form-inline" >
@@ -137,17 +139,21 @@
             <thead>
             <th>ID</th>
             <th>Name</th>
-            <th>Bedrooms</th>
             <th>Beds</th>
+            <th>Bedrooms</th>
+            <th>Bathrooms</th>
             <th>Price</th>
+            <th>Reviews</th>
             <th>Rating</th>
             </thead>
             <tr ng-repeat="x in listing">
                 <td>{{x.id}}</td>
                 <td>{{x.name}}</td>
-                <td>{{x.bedrooms}}</td>
                 <td>{{x.beds}}</td>
+                <td>{{x.bedrooms}}</td>
+                <td>{{x.bathrooms}}</td>
                 <td>{{x.price}}</td>
+                <td>{{x.reviews}}</td>
                 <td>{{x.rating}}</td>
             </tr>
         </table>
