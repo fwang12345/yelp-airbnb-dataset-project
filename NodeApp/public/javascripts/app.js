@@ -292,59 +292,64 @@ app.controller('tripController', function ($scope, $http) {
       currentDate.setDate(currentDate.getDate() + 1);
   }
   $scope.dateArray = readableDateArray;
+  var data = [];
+  for (i = 0; i < readableDateArray.length; i++) {
+    var date = readableDateArray[i];
+    var date_data = [];
+    date_data.push(date);
 
-  $scope.getHouses = function(day) {
-    var request = $http({
+    var request1 = $http({
       url: '/doHouse',
       method: 'GET',
       params: {
         username: user,
         trip_id: id,
-        date: day
+        date: date
       }
     });
-    request.success(function (response) {
-      console.log(response);
-      return response;
+    request1.success(function (response) {
+      date_data.push(response);
     });
-    request.error(function (err) {
+    request1.error(function (err) {
       console.log("error: ", err);
     });
-  }
-  $scope.getActivities = function(day) {
-    var request = $http({
+
+    var request2 = $http({
       url: '/doActivity',
       method: 'GET',
       params: {
         username: user,
         trip_id: id,
-        date: day
+        date: date
       }
     });
-    request.success(function (response) {
-      return response;
+    request2.success(function (response) {
+      date_data.push(response);
     });
-    request.error(function (err) {
+    request2.error(function (err) {
       console.log("error: ", err);
     });
-  }
-  $scope.getRestaurants = function(day) {
-    var request = $http({
+
+    var request3 = $http({
       url: '/doRestaurant',
       method: 'GET',
       params: {
         username: user,
         trip_id: id,
-        date: day
+        date: date
       }
     });
-    request.success(function (response) {
-      return response;
+    request3.success(function (response) {
+      date_data.push(response);
     });
-    request.error(function (err) {
+    request3.error(function (err) {
       console.log("error: ", err);
     });
+
+    data.push(date_data);
   }
+
+  $scope.data = data;
 
 });
 
