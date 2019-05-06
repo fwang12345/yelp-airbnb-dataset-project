@@ -186,6 +186,23 @@ router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
     }
   });
 });
+router.get('/bus/:category', function(req, res) {
+  var category = req.params.category
+  var query = `SELECT b.business_id, name, address, city, state, zipcode, stars, reviews
+              FROM cis450project.business b JOIN 
+                (SELECT business_id
+                FROM cis450project.category
+                WHERE category = '${category}') c ON b.business_id = c.business_id
+              ORDER BY reviews DESC, stars DESC
+              LIMIT 10`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      
+    }
+  });
+});
 // template for GET requests
 /*
 router.get('/routeName/:customParameter', function(req, res) {
