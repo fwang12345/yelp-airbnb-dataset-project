@@ -12,3 +12,8 @@
 .form-inline {
   margin: 5px 0 5px 0; /* top right bottom left */
 }
+.nextButt {
+  position: fixed;
+  bottom:0;
+  right:0;
+}

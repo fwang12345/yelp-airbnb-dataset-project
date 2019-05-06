@@ -62,6 +62,64 @@ router.get('/routeName', function(req, res) {
 });
 */
 
+router.post('/addHouse', function(req, res) {
+  // use console.log() as print() in case you want to debug, example below:
+  // console.log(req.body); will show the print result in your terminal
+
+  // req.body contains the json data sent from the loginController
+  // e.g. to get username, use req.body.username
+  var query = `INSERT INTO doHousing VALUES ('${req.body.username}','${req.body.tripID}', '${req.body.id}','${req.body.day}')`; /* Write your query here and uncomment line 21 in javascripts/app.js*/
+  connection.query(query, function(err, rows, fields) {
+    console.log("rows", rows);
+    console.log("fields", fields);
+    if (err) console.log('insert error: ', err);
+    else {
+      res.json({
+        result: 'success'
+      });
+    }
+  });
+});
+
+router.post('/addRest', function(req, res) {
+  // use console.log() as print() in case you want to debug, example below:
+  // console.log(req.body); will show the print result in your terminal
+
+  // req.body contains the json data sent from the loginController
+  // e.g. to get username, use req.body.username
+  var query = `INSERT INTO doRestaurant VALUES ('${req.body.username}','${req.body.tripID}', '${req.body.id}','${req.body.day}')`; /* Write your query here and uncomment line 21 in javascripts/app.js*/
+  connection.query(query, function(err, rows, fields) {
+    console.log("rows", rows);
+    console.log("fields", fields);
+    if (err) console.log('insert error: ', err);
+    else {
+      res.json({
+        result: 'success'
+      });
+    }
+  });
+});
+
+router.post('/addAct', function(req, res) {
+  // use console.log() as print() in case you want to debug, example below:
+  // console.log(req.body); will show the print result in your terminal
+
+  // req.body contains the json data sent from the loginController
+  // e.g. to get username, use req.body.username
+  var query = `INSERT INTO doActivity VALUES ('${req.body.username}','${req.body.tripID}', '${req.body.id}','${req.body.day}')`; /* Write your query here and uncomment line 21 in javascripts/app.js*/
+  connection.query(query, function(err, rows, fields) {
+    console.log("rows", rows);
+    console.log("fields", fields);
+    if (err) console.log('insert error: ', err);
+    else {
+      res.json({
+        result: 'success'
+      });
+    }
+  });
+});
+
+
 // Login uses POST request
 router.get('/login', function(req, res) {
   var user = req.query.username;

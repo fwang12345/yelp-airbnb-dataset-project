@@ -130,6 +130,7 @@ app.controller('listingController', function ($scope, $http) {
   "American (New)", "Japanese", "Canadian (New)", "Asian Fusion", "Thai", "Mediterranean", "Korean", "Indian"];
   $scope.acts = ["Shopping", "Beauty & Spas", "Nightlife", "Active Life", "Arts & Entertainment", 
   "Fitness & Instruction", "Day Spas", "Massage"];
+  $scope.days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
   $scope.searchHouse = function(city, beds, rooms, baths) {
     if (city != null && beds != null && rooms != null && baths != null) {
       $scope.list_show = false;
@@ -141,7 +142,7 @@ app.controller('listingController', function ($scope, $http) {
         $scope.list_show = true;
       });
     }
-  }
+  };
   $scope.searchBus = function(city, category) {
     if (city != null && category != null) {
       $scope.list_show = false;
@@ -153,9 +154,78 @@ app.controller('listingController', function ($scope, $http) {
         $scope.bus_show = true;
       });
     }
-  }
+  };
   $scope.orderByThis = function(order) {
     console.log(order);
+  };
+  $scope.submitHousing = function(id,day){
+    var username = 'trevor';
+    var tripID = '1';
+    var request2 = $http({
+      url: '/addHouse',
+      method: "POST",
+      data: {
+        'username': username,
+        'tripID': tripID,
+        'id': id,
+        'day': day
+      }
+    });
+    request2.success(function (response) {
+      console.log(response);
+    });
+    request2.error(function (err) {
+      // failed
+      console.log("error: ", err);
+    });
+  };
+
+  $scope.submitRest = function(id,day){
+    var username = 'trevor';
+    var tripID = '1';
+    var request2 = $http({
+      url: '/addRest',
+      method: "POST",
+      data: {
+        'username': username,
+        'tripID': tripID,
+        'id': id,
+        'day': day
+      }
+    });
+    request2.success(function (response) {
+      console.log(response);
+    });
+    request2.error(function (err) {
+      // failed
+      console.log("error: ", err);
+    });
+  };
+
+  $scope.submitAct = function(id,day){
+    var username = 'trevor';
+    var tripID = '1';
+    var request2 = $http({
+      url: '/addAct',
+      method: "POST",
+      data: {
+        'username': username,
+        'tripID': tripID,
+        'id': id,
+        'day': day
+      }
+    });
+    request2.success(function (response) {
+      console.log(response);
+    });
+    request2.error(function (err) {
+      // failed
+      console.log("error: ", err);
+    });
+  };
+
+  $scope.viewTrip = function () {
+    window.location.href = "http://localhost:8081/trip"
   };
 });
 
