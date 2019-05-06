@@ -30,7 +30,8 @@ app.controller('loginController', function ($scope, $http) {
 });
 
 app.controller('listingController', function ($scope, $http) {
-  $scope.orderBy = ["Name","Price", "Rating"];
+  $scope.orderByHousing = ["Name","Price", "Rating"];
+  $scope.orderByActivity = ["Name","Rating", "Number of Reviews"];
   $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10+"];
   $scope.cities = ["Las Vegas", "city2", "city3"];
 

@@ -20,42 +20,114 @@
 
 <body>
 
-<div class="container listing-container" ng-controller="listingController">
+<div class="container listing-container" ng-controller="listingController" ng-init="category = 'Housing'">
     <div class="jumbotron" >
         <div class="top">
-            <div class="h5">Categories </div>
+            <div class="h5">Edit Trip: [trip name here]</div>
+            <div>Note: I will assume I have the city from the previous page</div>
+            <div>Add a new activity!</div>
 
-            <label >City
-                <select class="dropdown"   ng-model="selectedCity" ng-options="city for city in cities"></select>
+            <label>Category
+                <input type="radio" name="category" ng-model="category" ng-value="'Housing'" ng-checked="true">Housing
+                <input type="radio" name="category" ng-model="category" ng-value="'Restaurant'">Restaurant
+                <input type="radio" name="category" ng-model="category" ng-value="'Activity'">Activity
             </label>
 
+            <div ng-if="category == 'Housing'">
+                <form class="form-inline" id="top">
+                    <label >Beds
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Zipcode
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
 
-        </div>
-        <form class="form-inline" id="top">
-            <label >Beds
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-            <label>Zipcode
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-
-            </label>
-        </form>
-        <form class="form-inline" >
-            <label>Bedrooms
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-            <label>Bathrooms
-                <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
-            </label>
-        </form>
-        <form class="form-inline" >
-            <div class="genres-container">
-                <label >Order By:
-                    <div class="orderBy" ng-repeat="type in orderBy" ng-click="orderByThis(type)">{{orderBy.type}}</div>
-                </label>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <label>Bedrooms
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Bathrooms
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <div class="genres-container">
+                        <label >Order By:
+                            <div class="orderBy" ng-repeat="type in orderByHousing" ng-click="orderByThis(type)">{{type}}</div>
+                        </label>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div ng-cloak ng-if="category == 'Restaurant'">
+                <form class="form-inline" id="top">
+                    <label >Category
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Zipcode
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
 
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <label>Min Rating
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Max Rating
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <label>Min No. of Reviews
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Max No. of Reviews
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <div class="genres-container">
+                        <label >Order By:
+                            <div class="orderBy" ng-repeat="type in orderByActivity" ng-click="orderByThis(type)">{{type}}</div>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div ng-cloak ng-if="category == 'Activity'">
+                <form class="form-inline" id="top">
+                    <label >Category
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Zipcode
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <label>Min Rating
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Max Rating
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <label>Min No. of Reviews
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                    <label>Max No. of Reviews
+                        <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
+                    </label>
+                </form>
+                <form class="form-inline" >
+                    <div class="genres-container">
+                        <label >Order By:
+                            <div class="orderBy" ng-repeat="type in orderByActivity" ng-click="orderByThis(type)">{{type}}</div>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 <div class="container bottom-container">
