@@ -82,6 +82,7 @@ app.controller('createController', function ($scope, $http) {
 });
 
 app.controller('dashboardControl', function($scope, $http) {
+  console.log($scope.trips);
   var user = sessionStorage.getItem('user');
   if (user == null) {
     window.location.href = "http://localhost:8081/"
@@ -128,7 +129,6 @@ app.controller('newTripController', function ($scope, $http) {
     })
     new_id.success(function(response) {
       var id = response[0].id + 1;
-      console.log(id);
       var request = $http({
         url: '/create_trip',
         method: "POST",
@@ -136,6 +136,7 @@ app.controller('newTripController', function ($scope, $http) {
           'user': user,
           'trip_id': id,
           'name': $scope.name,
+          'location': $scope.location,
           'startdate': $scope.startdate,
           'enddate': $scope.enddate
         }

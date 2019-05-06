@@ -121,10 +121,11 @@ router.post('/create_trip', function(req, res) {
   var user = req.body.user;
   var id = req.body.trip_id;
   var name = req.body.name;
+  var location = req.body.location;
   var startdate = req.body.startdate.substring(0, 10);
   var enddate = req.body.enddate.substring(0, 10);
   console.log(user, id, startdate, enddate);
-  var query = `INSERT INTO cis450project.trips VALUES ('${user}', ${id}, '${name}', '${startdate}', '${enddate}')`;
+  var query = `INSERT INTO cis450project.trips VALUES ('${user}', ${id}, '${name}', '${location}', '${startdate}', '${enddate}')`;
 
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);
