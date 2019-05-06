@@ -250,7 +250,7 @@ router.get('/bus/:city/:category/:orderBy', function(req, res) {
   var category = req.params.category;
   var orderBy = req.params.orderBy;
   var query = `SELECT business_id, name, address, city, state, zipcode, stars, reviews
-              FROM cis450project.categories 
+              FROM cis450project.category 
               NATURAL JOIN 
               cis450project.business
               WHERE city = '${city}' AND
