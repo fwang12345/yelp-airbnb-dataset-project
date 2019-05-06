@@ -122,6 +122,26 @@ app.controller('loginController', function ($scope, $http) {
 });
 
 app.controller('listingController', function ($scope, $http) {
+  var startdate = sessionStorage.getItem('startdate');
+  var enddate = sessionStorage.getItem('enddate');
+  var startdate_object = new Date(startdate);
+  var enddate_object = new Date(enddate);
+  enddate_object.setDate(enddate_object.getDate() + 1);
+  var dateArray = [];
+  var readableDateArray = [];
+  var currentDate = startdate_object;
+  var nextDate;
+  while (currentDate <= enddate_object) {
+    nextDate = new Date(currentDate);
+    dateArray.push(nextDate);
+    readableDateArray.push(nextDate.toISOString().substring(0, 10));
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  $scope.dateArray = readableDateArray;
+
+
+
+
   var user = sessionStorage.getItem('user');
   if (user == null) {
     window.location.href = "http://localhost:8081/"
@@ -130,8 +150,6 @@ app.controller('listingController', function ($scope, $http) {
   var id = sessionStorage.getItem('id');
   var name = sessionStorage.getItem('name');
   var location = sessionStorage.getItem('location');
-  var startdate = sessionStorage.getItem('startdate');
-  var enddate = sessionStorage.getItem('enddate');
   if (id == null) {
     window.location.href = "http://localhost:8081/dashboard"
   }
@@ -156,12 +174,12 @@ app.controller('listingController', function ($scope, $http) {
 
   $scope.days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 
-  $scope.searchHouse = function(beds, rooms, baths) {
+  $scope.searchHouse = function(beds, rooms, baths,orderBy) {
     if (beds != null && rooms != null && baths != null) {
       var city = location;
       $scope.list_show = false;
       $scope.bus_show = false;
-      var request = $http.get(`/house/${city}/${beds}/${rooms}/${baths}`);
+      var request = $http.get(`/house/${city}/${beds}/${rooms}/${baths}/${orderBy}`);
       request.success(function (response) {
         // success
         $scope.listing = response;
@@ -170,12 +188,12 @@ app.controller('listingController', function ($scope, $http) {
     }
   };
 
-  $scope.searchBus = function(category) {
+  $scope.searchBus = function(category,orderBy) {
     if (category != null) {
       var city = location;
       $scope.list_show = false;
       $scope.bus_show = false;
-      var request = $http.get(`/bus/${city}/${category}`);
+      var request = $http.get(`/bus/${city}/${category}/${orderBy}`);
       request.success(function (response) {
         // success
         $scope.business = response;
@@ -183,12 +201,9 @@ app.controller('listingController', function ($scope, $http) {
       });
     }
   };
-  $scope.orderByThis = function(order) {
-    console.log(order);
-  };
   $scope.submitHousing = function(id,day){
-    var username = 'trevor';
-    var tripID = '1';
+    var username = name;
+    var tripID = parseInt(id);
     var request2 = $http({
       url: '/addHouse',
       method: "POST",
