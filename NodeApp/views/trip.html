@@ -14,43 +14,47 @@
 <body>
 <div class="container trip-container" ng-controller="tripController">
     <h1>Your Trip:</h1>
-        <div class="jumbotron" >
-            <div class="container">
-                <div>
-                    <div class = "day" ng-repeat="day in dateArray">
-                        <div>{{day}}</div>
-                        <div class = "housing">
-                            <div class="h5">Housing</div>
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                        <div class = "activities">
-                            <div class="h5">Activities</div>
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                        <div class = "restaurant">
-                            <div class="h5">Restaurant</div>
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div>
+                <table>
+                    <tr>
+                        <td class = "day" ng-repeat="day in dateArray">
+                            <div class="jumbotron" >
+                                <div>{{day}}</div>
+                                <div class = "housing">
+                                    <div class="h5">Housing</div>
+                                    <table ng-show="show" class="table table-bordered">
+                                        <thead>
+                                        <th>Name</th>
+                                        </thead>
+                                        <tr ng-repeat="x in listing">
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class = "activities">
+                                    <div class="h5">Activities</div>
+                                    <table ng-show="show" class="table table-bordered">
+                                        <thead>
+                                        <th>Name</th>
+                                        </thead>
+                                        <tr ng-repeat="x in listing">
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class = "restaurant">
+                                    <div class="h5">Restaurant</div>
+                                    <table ng-show="show" class="table table-bordered">
+                                        <thead>
+                                        <th>Name</th>
+                                        </thead>
+                                        <tr ng-repeat="x in listing">
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

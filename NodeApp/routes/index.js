@@ -235,7 +235,6 @@ router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
   var query = `SELECT *
                FROM cis450project.listing
                WHERE city = '${city}' AND beds >= ${beds} AND bedrooms >= ${rooms} AND bathrooms >= ${baths}
-               ORDER BY ${} DESC, rating DESC
                LIMIT 10`;
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);
