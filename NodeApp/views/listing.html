@@ -171,9 +171,12 @@
                     <div ng-cloak ng-if="category == 'Housing'">
                         <button type="submit" class="btn btn-primary" ng-click="submitHousing(x.id,date)">Add</button>
                     </div>
+
                 </td>
             </tr>
         </table>
+        <input type="text" class="form-control" id="username" placeholder="Listing ID">
+        <div> <button id="1" style="padding:10px; cursor:pointer;">View on Map</button> </div>
     </div>
     <h3 ng-show = "bus_show">Business:</h3>
     <div class="table">
@@ -212,7 +215,6 @@
     </div>
     <div class="container map-container">
         <div id="map"></div>
-
     </div>
 </div>
     <div class = "container nextButt">
@@ -242,10 +244,13 @@
     }
     function newLocation(newLat,newLng)
     {
+        var uluru  = {lat:newLat, lng: newLng};
         map.setCenter({
             lat : newLat,
             lng : newLng
         });
+        map.setZoom(12);
+        var marker = new google.maps.Marker({position: uluru, map: map});
     }
 
     //google.maps.event.addDomListener(window, 'load', initMap());
@@ -253,7 +258,7 @@
     //Setting Location with jQuery
     $(document).ready(function () {
         $("#1").on('click', function () {
-            newLocation(48.1293954, 11.556663);
+            newLocation(36.17785, -115.226);
         });
     });
 </script>
