@@ -43,8 +43,13 @@
                     <label>Bathrooms
                         <select class="dropdown" ng-model="baths" ng-options="num for num in nums"></select>
                     </label>
+                    <label>Order By:
+                        <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'name'" ng-checked="true"> Price
+                        <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'price'"> Rating
+                        <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'rating'"> Name
+                    </label>
                 </form>
-                <button type="submit" class="btn btn-primary" ng-click="searchHouse(beds, rooms, baths)">Search</button>
+                <button type="submit" class="btn btn-primary" ng-click="searchHouse(beds, rooms, baths,houseOrderBy)">Search</button>
                 <!-- <form class="form-inline" >
                     <div class="genres-container">
                         <label >Order By:
@@ -58,8 +63,13 @@
                     <label>Cuisine
                         <select class="dropdown" ng-model="cuisine" ng-options="cuisine for cuisine in cuisines"></select>
                     </label>
+                    <label>Order By:
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'zipcode'" ng-checked="true"> Zipcode
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'price'"> Rating
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'rating'"> Name
+                    </label>
                 </form>
-                <button type="submit" class="btn btn-primary" ng-click="searchBus(cuisine)">Search</button>
+                <button type="submit" class="btn btn-primary" ng-click="searchBus(cuisine,busOrderBy)">Search</button>
                 <!-- <form class="form-inline" >
                     <label>Min Rating
                         <select class="dropdown" ng-model="number3" ng-options="num for num in nums"></select>
@@ -89,8 +99,13 @@
                     <label>Activity
                         <select class="dropdown" ng-model="act" ng-options="act for act in acts"></select>
                     </label>
+                    <label>Order By:
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'name'" ng-checked="true"> Price
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'price'"> Rating
+                        <input type="radio" name="category" ng-model="busOrderBy" ng-value="'rating'"> Name
+                    </label>
                 </form>
-                <button type="submit" class="btn btn-primary" ng-click="searchBus(city, act)">Search</button>
+                <button type="submit" class="btn btn-primary" ng-click="searchBus(city, act,busOrderBy)">Search</button>
                 <!-- <form class="form-inline" >
                     <label>Min Rating
                         <select class="dropdown" ng-model="numbers" ng-options="num for num in nums"></select>
@@ -172,13 +187,14 @@
         <div class="form">
             <form>
                 <div class="form-group">
+
                     <label class="h2" for="listing_id">
                         Listing ID
                     </label>
                     <input  class="form-control" id="listing_id" placeholder="Enter Listing ID" ng-model="id">
                 </div>
-                <label>Day
-                    <select class="dropdown" ng-model="day" ng-options="day for day in days"></select>
+                <label>Date:
+                    <select class="dropdown" ng-model="baths" ng-options="date for date in dateArray"></select>
                 </label>
                 <div ng-cloak ng-if="category == 'Activity'">
                     <button type="submit" class="btn btn-primary" ng-click="submitAct(id,day)">Submit</button>
