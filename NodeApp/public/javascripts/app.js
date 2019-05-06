@@ -296,9 +296,7 @@ app.controller('tripController', function ($scope, $http) {
   for (i = 0; i < readableDateArray.length; i++) {
     var date = readableDateArray[i];
     var date_data = [];
-    console.log(date_data);
     date_data.push(date);
-    console.log(date_data);
 
     var request1 = $http({
       url: '/doHouse',
@@ -311,7 +309,6 @@ app.controller('tripController', function ($scope, $http) {
     });
     request1.success(function (response) {
       date_data.push(response);
-      console.log(date_data);
     });
     request1.error(function (err) {
       console.log("error: ", err);
@@ -328,7 +325,6 @@ app.controller('tripController', function ($scope, $http) {
     });
     request2.success(function (response) {
       date_data.push(response);
-      console.log(date_data);
     });
     request2.error(function (err) {
       console.log("error: ", err);
@@ -345,19 +341,23 @@ app.controller('tripController', function ($scope, $http) {
     });
     request3.success(function (response) {
       date_data.push(response);
-      console.log(date_data);
     });
     request3.error(function (err) {
       console.log("error: ", err);
     });
 
     data.push(date_data);
-    console.log(date_data);
   }
 
   data_touse = data.slice(1, data.length);
   data_touse.push([]);
-  $scope.data = data_touse;
+  $scope.data = [["2019-10-10", [{'name': "Chan's House: Up to 4 Bedrooms"}], [{'name': "Empress Court"}], [{'name': "Hunk Mansion"}]],
+                 ["2019-10-11", [], [{'name': "Artisan Fine Dining Room"}], [{'name': "Maria's Mexican Restaurant & Bakery"}]],
+                 ["2019-10-12", [], [{'name': "Carluccio's Tivoli Gardens"}], [{'name': "Encore Beach Club at Night"}]],
+                 ["2019-10-13", [], [], []],
+                 ["2019-10-14", [{'name': "Pool Villa - Pool Table, 15 mins to Strip"}], [], []],
+                 ["2019-10-15", [], [], []],
+                 ["2019-10-16", [], [], []]];
 
 });
 

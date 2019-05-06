@@ -43,7 +43,7 @@
                     <label>Bathrooms
                         <select class="dropdown" ng-model="baths" ng-options="num for num in nums"></select>
                     </label>
-                    <label>Order By:
+                    <label ng-show="false" >Order By:
                         <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'name'" ng-checked="true"> Price
                         <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'price'"> Rating
                         <input type="radio" name="category" ng-model="houseOrderBy" ng-value="'rating'"> Name
@@ -63,7 +63,7 @@
                     <label>Cuisine
                         <select class="dropdown" ng-model="cuisine" ng-options="cuisine for cuisine in cuisines"></select>
                     </label>
-                    <label>Order By:
+                    <label ng-show="false" >Order By:
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'zipcode'" ng-checked="true"> Zipcode
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'price'"> Rating
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'rating'"> Name
@@ -99,7 +99,7 @@
                     <label>Activity
                         <select class="dropdown" ng-model="act" ng-options="act for act in acts"></select>
                     </label>
-                    <label>Order By:
+                    <label ng-show="false" >Order By:
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'name'" ng-checked="true"> Price
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'price'"> Rating
                         <input type="radio" name="category" ng-model="busOrderBy" ng-value="'rating'"> Name
