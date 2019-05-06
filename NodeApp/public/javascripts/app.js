@@ -41,9 +41,6 @@ app.controller('listingController', function ($scope, $http) {
 
 app.controller('createController', function ($scope, $http) {
   $scope.verifyCreate = function () {
-    // To check in the console if the variables are correctly storing the input:
-    // console.log($scope.username, $scope.password);
-
     var request1 = $http({
       url: '/login',
       method: "GET",
@@ -69,7 +66,6 @@ app.controller('createController', function ($scope, $http) {
           // success
           console.log(response);
           if (response.result === "success") {
-            // After you've written the INSERT query in routes/index.js, uncomment the following line
             window.location.href = "http://localhost:8081/"
           }
         });
@@ -84,6 +80,85 @@ app.controller('createController', function ($scope, $http) {
     });
   };
 });
+
+app.controller('dashboardControl', function($scope, $http) {
+  var user = sessionStorage.getItem('user');
+  if (user == null) {
+    window.location.href = "http://localhost:8081/"
+  }
+  var request1 = $http({
+    url: '/trips',
+    method: "GET",
+    params: {
+      user: user
+    }
+  });
+
+  request1.success(function (response) {
+    $scope.trips = response;
+  });
+  request1.error(function (err) {
+    console.log("error: ", err);
+  });
+
+  $scope.newTrip = function() {
+    if (sessionStorage.getItem('user') == null) {
+      window.location.href = "http://localhost:8081/"
+    } else {
+      window.location.href = "http://localhost:8081/new-trip"
+    }
+  }
+});
+
+app.controller('newTripController', function ($scope, $http) {
+  $scope.cities = ["Henderson", "Las Vegas", "Montreal", "Toronto"];
+
+  $scope.createTrip = function() {
+    var user = sessionStorage.getItem('user');
+    if (user == null) {
+      window.location.href = "http://localhost:8081/"
+    }
+
+    var new_id = $http({
+      url: '/new_trip_id',
+      method: "GET",
+      params: {
+        'user': user
+      }
+    })
+    new_id.success(function(response) {
+      var id = response[0].id + 1;
+      console.log(id);
+      var request = $http({
+        url: '/create_trip',
+        method: "POST",
+        data: {
+          'user': user,
+          'trip_id': id,
+          'name': $scope.name,
+          'startdate': $scope.startdate,
+          'enddate': $scope.enddate
+        }
+      });
+
+      request.success(function (response) {
+        // success
+        console.log(response);
+        if (response.result === "success") {
+          window.location.href = "http://localhost:8081/dashboard"
+        }
+      });
+      request.error(function (err) {
+        // failed
+        console.log("error: ", err);
+      });
+    });
+    new_id.error(function (err) {
+      console.log("error:", err);
+    });
+  }
+});
+
 app.controller('testControl', function ($scope, $http) {
   $scope.cities = ["Las Vegas", "city2", "city3"];
   $scope.test = function (city) {

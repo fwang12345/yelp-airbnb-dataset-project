@@ -29,6 +29,10 @@ router.get('/trip', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'trip.html'));
 });
 
+router.get('/new-trip', function(req, res) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'new_trip.html'));
+});
+
 router.get('/newAccount', function(req, res) {
   res.sendFile(path.join(__dirname, '../', 'views', 'new_account.html'));
 });
@@ -84,6 +88,46 @@ router.post('/create', function(req, res) {
     console.log("rows", rows);
     console.log("fields", fields);
     if (err) console.log('insert error: ', err);
+    else {
+      res.json({
+        result: 'success'
+      });
+    }
+  });
+});
+router.get('/new_trip_id', function(req, res) {
+  var user = req.query.user;
+  var query = `SELECT MAX(trip_id) AS id FROM trips
+               WHERE user = '${user}'`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log('insert error:', err);
+    else {
+      res.json(rows);
+    }
+  });
+});
+router.get('/trips', function(req, res) {
+  var user = req.query.user;
+  var query = `SELECT * FROM cis450project.trips
+               WHERE user = '${user}'`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log('insert error:', err);
+    else {
+      res.json(rows);
+    }
+  });
+});
+router.post('/create_trip', function(req, res) {
+  var user = req.body.user;
+  var id = req.body.trip_id;
+  var name = req.body.name;
+  var startdate = req.body.startdate.substring(0, 10);
+  var enddate = req.body.enddate.substring(0, 10);
+  console.log(user, id, startdate, enddate);
+  var query = `INSERT INTO cis450project.trips VALUES ('${user}', ${id}, '${name}', '${startdate}', '${enddate}')`;
+
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
     else {
       res.json({
         result: 'success'
