@@ -18,7 +18,7 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <span class="navbar-brand center">CIS550 HW2</span>
+        <span class="navbar-brand center"></span>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/dashboard">Dashboard</a>
@@ -28,22 +28,23 @@
             </div>
         </div>
     </nav>
+    <div class="title">View My Trips</div>
     <div class="container trips-container" ng-controller="dashboardControl">
         <div class="jumbotron">
-              <span>
-                    <button type="button" class="login-button" name="new-trip" ng-click="edit()">Edit</button>
-
-                        </span>
-            <span>
-                    <button type="button" class="login-button" name="new-trip" ng-click="view()">View</button>
-                            </span>
             <table class="table table-bordered" >
-                <tr ng-repeat="trip in trips" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,trip.name,trip.location,trip.start_date,trip.end_date)">
-                    <td id = "row1">{{$index}}</td>
-                    <td id = "row2">{{trip.name}}</td>
-                    <td id = "row3">{{trip.location}}</td>
-                    <td id = "row4">{{trip.start_date}}</td>
-                    <td id = "row5">{{trip.end_date}}</td>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+                <tr ng-repeat="trip in trips">
+                    <td>{{trip.name}}</td>
+                    <td>{{trip.location}}</td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td><button type="button" ng-click="edit(trip)">Edit</button></td>
+                    <td><button type="button" ng-click="view(trip)">View</button></td>
                 </tr>
             </table>
             <button type="button" class="login-button" name="new-trip" ng-click="newTrip()">New Trip</button>

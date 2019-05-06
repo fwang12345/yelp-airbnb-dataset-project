@@ -23,14 +23,13 @@
 <div class="container listing-container" ng-controller="listingController" ng-init="category = 'Housing'">
     <div class="jumbotron" >
         <div class="top">
-            <div class="h5">Edit Trip: [trip name here]</div>
-            <div>Note: I will assume I have the city from the previous page</div>
+            <div class="h5">Edit Trip: {{trip.name}}</div>
             <div>Add a new activity!</div>
 
-            <label>Category
-                <input type="radio" name="category" ng-model="category" ng-value="'Housing'" ng-checked="true">Housing
-                <input type="radio" name="category" ng-model="category" ng-value="'Restaurant'">Restaurant
-                <input type="radio" name="category" ng-model="category" ng-value="'Activity'">Activity
+            <label>Category:
+                <input type="radio" name="category" ng-model="category" ng-value="'Housing'" ng-checked="true"> Housing
+                <input type="radio" name="category" ng-model="category" ng-value="'Restaurant'"> Restaurant
+                <input type="radio" name="category" ng-model="category" ng-value="'Activity'"> Activity
             </label>
 
             <div ng-if="category == 'Housing'">
