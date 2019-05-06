@@ -143,7 +143,7 @@ app.controller('listingController', function ($scope, $http) {
     }
   }
   $scope.searchBus = function(city, category) {
-    if (category != null) {
+    if (city != null && category != null) {
       $scope.list_show = false;
       $scope.bus_show = false;
       var request = $http.get(`/bus/${city}/${category}`);

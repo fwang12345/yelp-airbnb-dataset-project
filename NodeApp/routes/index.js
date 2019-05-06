@@ -187,6 +187,7 @@ router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
   });
 });
 router.get('/bus/:city/:category', function(req, res) {
+  var city = req.params.city
   var category = req.params.category
   var query = `SELECT b.business_id, name, address, city, state, zipcode, stars, reviews
               FROM cis450project.business b JOIN 
