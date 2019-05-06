@@ -122,6 +122,29 @@ app.controller('loginController', function ($scope, $http) {
 });
 
 app.controller('listingController', function ($scope, $http) {
+  var user = sessionStorage.getItem('user');
+  if (user == null) {
+    window.location.href = "http://localhost:8081/"
+  }
+
+  var id = sessionStorage.getItem('id');
+  var name = sessionStorage.getItem('name');
+  var location = sessionStorage.getItem('location');
+  var startdate = sessionStorage.getItem('startdate');
+  var enddate = sessionStorage.getItem('enddate');
+  if (id == null) {
+    window.location.href = "http://localhost:8081/dashboard"
+  }
+
+  $scope.trip = {
+    'user': user,
+    'id': parseInt(id),
+    'name': name,
+    'location': location,
+    'start_date': startdate,
+    'end_date': enddate
+  };
+
   $scope.orderByHousing = ["Name","Price", "Rating"];
   $scope.orderByActivity = ["Name","Rating", "Number of Reviews"];
   $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10+"];
@@ -130,6 +153,47 @@ app.controller('listingController', function ($scope, $http) {
   $scope.orderByThis = function(order) {
     console.log(order);
   };
+});
+
+app.controller('tripController', function ($scope, $http) {
+  var user = sessionStorage.getItem('user');
+  if (user == null) {
+    window.location.href = "http://localhost:8081/"
+  }
+
+  var id = sessionStorage.getItem('id');
+  var name = sessionStorage.getItem('name');
+  var location = sessionStorage.getItem('location');
+  var startdate = sessionStorage.getItem('startdate');
+  var enddate = sessionStorage.getItem('enddate');
+  if (id == null) {
+    window.location.href = "http://localhost:8081/dashboard"
+  }
+
+  $scope.trip = {
+    'user': user,
+    'id': parseInt(id),
+    'name': name,
+    'location': location,
+    'start_date': startdate,
+    'end_date': enddate
+  };
+
+  var startdate_object = new Date(startdate);
+  var enddate_object = new Date(enddate);
+  enddate_object.setDate(enddate_object.getDate() + 1);
+  var dateArray = [];
+  var readableDateArray = [];
+  var currentDate = startdate_object;
+  var nextDate;
+  while (currentDate <= enddate_object) {
+      nextDate = new Date(currentDate);
+      dateArray.push(nextDate);
+      readableDateArray.push(nextDate.toISOString().substring(0, 10));
+      currentDate.setDate(currentDate.getDate() + 1);
+  }
+  $scope.dateArray = readableDateArray;
+
 });
 
 app.controller('createController', function ($scope, $http) {
@@ -176,29 +240,30 @@ app.controller('createController', function ($scope, $http) {
 });
 
 app.controller('dashboardControl', function($scope, $http, myLocationService,myEndDateService,myStartDateService,myNameService) {
-  $scope.selectedRow = null;  // initialize our variable to null
-  $scope.setClickedRow = function(index,name,location,start_date,end_date){  //function that sets the value of selectedRow to current index
-    $scope.selectedRow = index;
-    console.log(index);
-    myLocationService.set(location);
-    myEndDateService.set(end_date);
-    myNameService.set(name);
-    myStartDateService.set(start_date);
-  };
-
-  $scope.edit = function () {
-    window.location.href = "http://localhost:8081/listing"
-  };
-
-  $scope.view = function () {
-    window.location.href = "http://localhost:8081/trip"
-  };
-  console.log($scope.trips);
   var user = sessionStorage.getItem('user');
   if (user == null) {
     window.location.href = "http://localhost:8081/"
   }
-  var request1 = $http({
+
+  $scope.edit = function(trip) {
+    sessionStorage.setItem('id', trip.trip_id);
+    sessionStorage.setItem('name', trip.name);
+    sessionStorage.setItem('location', trip.location);
+    sessionStorage.setItem('startdate', trip.start_date);
+    sessionStorage.setItem('enddate', trip.end_date);
+    window.location.href = "http://localhost:8081/listing"
+  };
+
+  $scope.view = function(trip) {
+    sessionStorage.setItem('id', trip.trip_id);
+    sessionStorage.setItem('name', trip.name);
+    sessionStorage.setItem('location', trip.location);
+    sessionStorage.setItem('startdate', trip.start_date);
+    sessionStorage.setItem('enddate', trip.end_date);
+    window.location.href = "http://localhost:8081/trip"
+  };
+  
+  var request = $http({
     url: '/trips',
     method: "GET",
     params: {
@@ -206,11 +271,11 @@ app.controller('dashboardControl', function($scope, $http, myLocationService,myE
     }
   });
 
-  request1.success(function (response) {
+  request.success(function (response) {
     $scope.trips = response;
   });
-  request1.error(function (err) {
-    console.log("error: ", err);
+  request.error(function (err) {
+    console.log("error:", err);
   });
 
   $scope.newTrip = function() {

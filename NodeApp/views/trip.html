@@ -14,27 +14,13 @@
 <body>
 <div class="container trip-container" ng-controller="tripController">
     <h1>Your Trip:</h1>
-        <div class ="week">
-            <span>
-            <div class="jumbotron" >
-                <div class = "day">
-                    <div class="h5">Monday</div>
-                </div>
-
-                <div class = "housing">
-                    <div class="h5">Housing</div>
-                    <div class="table">
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "activities">
-                        <div class="h5">Activities</div>
-                        <div class="table">
+        <div class="jumbotron" >
+            <div class="container">
+                <div>
+                    <div class = "day" ng-repeat="day in dateArray">
+                        <div>{{day}}</div>
+                        <div class = "housing">
+                            <div class="h5">Housing</div>
                             <table ng-show="show" class="table table-bordered">
                                 <thead>
                                 <th>Name</th>
@@ -43,10 +29,8 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                    <div class = "restaurant">
-                        <div class="h5">Restaurant</div>
-                        <div class="table">
+                        <div class = "activities">
+                            <div class="h5">Activities</div>
                             <table ng-show="show" class="table table-bordered">
                                 <thead>
                                 <th>Name</th>
@@ -55,42 +39,8 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                </div>
-            </div>
-            </span>
-            <span>
-            <div class="jumbotron" >
-                <div class = "day">
-                    <div class="h5">Tuesday</div>
-                </div>
-
-                <div class = "housing">
-                    <div class="h5">Housing</div>
-                    <div class="table">
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "activities">
-                        <div class="h5">Activities</div>
-                        <div class="table">
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class = "restaurant">
-                        <div class="h5">Restaurant</div>
-                        <div class="table">
+                        <div class = "restaurant">
+                            <div class="h5">Restaurant</div>
                             <table ng-show="show" class="table table-bordered">
                                 <thead>
                                 <th>Name</th>
@@ -102,221 +52,6 @@
                     </div>
                 </div>
             </div>
-            </span>
-            <span>
-            <div class="jumbotron" >
-                <div class = "day">
-                    <div class="h5">Wednesday</div>
-                </div>
-
-                <div class = "housing">
-                    <div class="h5">Housing</div>
-                    <div class="table">
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "activities">
-                        <div class="h5">Activities</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "restaurant">
-                        <div class="h5">Restaurant</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            </span>
-            <span>
-            <div class="jumbotron" >
-                <div class = "day">
-                    <div class="h5">Thursday</div>
-                </div>
-
-                <div class = "housing">
-                    <div class="h5">Housing</div>
-                    <div class="table">
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "activities">
-                        <div class="h5">Activities</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "restaurant">
-                        <div class="h5">Restaurant</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            </span>
-            <span>
-            <div class="jumbotron" >
-                <div class = "day">
-                    <div class="h5">Friday</div>
-                </div>
-
-                <div class = "housing">
-                    <div class="h5">Housing</div>
-                    <div class="table">
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "activities">
-                        <div class="h5">Activities</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                    <div class = "restaurant">
-                        <div class="h5">Restaurant</div>
-                        <table ng-show="show" class="table table-bordered">
-                            <thead>
-                            <th>Name</th>
-                            </thead>
-                            <tr ng-repeat="x in listing">
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            </span>
-            <span>
-            <div class="jumbotron"  >
-                <div class = "day">
-                    <div class="h5">Saturday</div>
-                </div>
-
-                <div class = "housing">
-                    <label>Housing
-                        <div class="table">
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                    </label>
-                    <div class = "activities">
-                        <label>Activities
-                            <div class="table">
-                                <table ng-show="show" class="table table-bordered">
-                                    <thead>
-                                    <th>Name</th>
-                                    </thead>
-                                    <tr ng-repeat="x in listing">
-                                    </tr>
-                                </table>
-                            </div>
-                        </label>
-                    </div>
-                    <div class = "restaurant">
-                        <label>Restaurant
-                            <div class="table">
-                                <table ng-show="show" class="table table-bordered">
-                                    <thead>
-                                    <th>Name</th>
-                                    </thead>
-                                    <tr ng-repeat="x in listing">
-                                    </tr>
-                                </table>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            </span>
-            <span>
-            <div class="jumbotron"  >
-                <div class = "day">
-                    <div class="h5">Sunday</div>
-                </div>
-
-                <div class = "housing">
-                    <label>Housing
-                        <div class="table">
-                            <table ng-show="show" class="table table-bordered">
-                                <thead>
-                                <th>Name</th>
-                                </thead>
-                                <tr ng-repeat="x in listing">
-                                </tr>
-                            </table>
-                        </div>
-                    </label>
-                    <div class = "activities">
-                        <label>Activities
-                            <div class="table">
-                                <table ng-show="show" class="table table-bordered">
-                                    <thead>
-                                    <th>Name</th>
-                                    </thead>
-                                    <tr ng-repeat="x in listing">
-                                    </tr>
-                                </table>
-                            </div>
-                        </label>
-                    </div>
-                    <div class = "restaurant">
-                        <label>Restaurant
-                            <div class="table">
-                                <table ng-show="show" class="table table-bordered">
-                                    <thead>
-                                    <th>Name</th>
-                                    </thead>
-                                    <tr ng-repeat="x in listing">
-                                    </tr>
-                                </table>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            </span>
         </div>
     </div>
 
