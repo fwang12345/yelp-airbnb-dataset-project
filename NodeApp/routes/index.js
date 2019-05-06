@@ -168,6 +168,43 @@ router.get('/business/:city', function(req, res) {
     }
   });
 });
+router.get('/house/:city/:beds/:rooms/:baths', function(req, res) {
+  var city = req.params.city
+  var beds = req.params.beds
+  var rooms = req.params.rooms
+  var baths = req.params.baths
+  var query = `SELECT *
+               FROM cis450project.listing
+               WHERE city = '${city}' AND beds >= ${beds} AND bedrooms >= ${rooms} AND bathrooms >= ${baths}
+               ORDER BY reviews DESC, rating DESC
+               LIMIT 10`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      
+    }
+  });
+});
+router.get('/bus/:city/:category', function(req, res) {
+  var city = req.params.city
+  var category = req.params.category
+  var query = `SELECT b.business_id, name, address, city, state, zipcode, stars, reviews
+              FROM cis450project.business b JOIN 
+                (SELECT business_id
+                FROM cis450project.category
+                WHERE category = '${category}') c ON b.business_id = c.business_id
+              WHERE city = '${city}'
+              ORDER BY reviews DESC, stars DESC
+              LIMIT 10`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+      
+    }
+  });
+});
 // template for GET requests
 /*
 router.get('/routeName/:customParameter', function(req, res) {

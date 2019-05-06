@@ -147,9 +147,36 @@ app.controller('listingController', function ($scope, $http) {
 
   $scope.orderByHousing = ["Name","Price", "Rating"];
   $scope.orderByActivity = ["Name","Rating", "Number of Reviews"];
-  $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10+"];
-  $scope.cities = ["Las Vegas", "city2", "city3"];
-
+  $scope.nums= ["0","1","2","3","4","5","6","7","8","9","10"];
+  $scope.cities = ["Toronto", "Montreal", "Las Vegas", "Henderson"];
+  $scope.cuisines = ["Restaurants", "American (Traditional)", "Mexican", "Chinese", "Italian", 
+  "American (New)", "Japanese", "Canadian (New)", "Asian Fusion", "Thai", "Mediterranean", "Korean", "Indian"];
+  $scope.acts = ["Shopping", "Beauty & Spas", "Nightlife", "Active Life", "Arts & Entertainment", 
+  "Fitness & Instruction", "Day Spas", "Massage"];
+  $scope.searchHouse = function(city, beds, rooms, baths) {
+    if (city != null && beds != null && rooms != null && baths != null) {
+      $scope.list_show = false;
+      $scope.bus_show = false;
+      var request = $http.get(`/house/${city}/${beds}/${rooms}/${baths}`);
+      request.success(function (response) {
+        // success
+        $scope.listing = response;
+        $scope.list_show = true;
+      });
+    }
+  }
+  $scope.searchBus = function(city, category) {
+    if (city != null && category != null) {
+      $scope.list_show = false;
+      $scope.bus_show = false;
+      var request = $http.get(`/bus/${city}/${category}`);
+      request.success(function (response) {
+        // success
+        $scope.business = response;
+        $scope.bus_show = true;
+      });
+    }
+  }
   $scope.orderByThis = function(order) {
     console.log(order);
   };
