@@ -158,6 +158,20 @@
                 <td>{{x.price}}</td>
                 <td>{{x.reviews}}</td>
                 <td>{{x.rating}}</td>
+                <td><label>Date:
+                    <select class="dropdown" ng-model="date" ng-options="date for date in dateArray"></select>
+                </label></td>
+                <td>
+                    <div ng-cloak ng-if="category == 'Activity'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitAct(x.id,date)">Add</button>
+                    </div>
+                    <div ng-cloak ng-if="category == 'Restaurant'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitRest(x.id,date)">Add</button>
+                    </div>
+                    <div ng-cloak ng-if="category == 'Housing'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitHousing(x.id,date)">Add</button>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
@@ -178,35 +192,26 @@
                 <td>{{x.address}}</td>
                 <td>{{x.zipcode}}</td>
                 <td>{{x.reviews}}</td>
-                <td>{{x.stars}}</td>    
+                <td>{{x.stars}}</td>
+                <td><label>Date:
+                    <select class="dropdown" ng-model="date" ng-options="date for date in dateArray"></select>
+                </label></td>
+                <td>
+                    <div ng-cloak ng-if="category == 'Activity'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitAct(x.id,date)">Add</button>
+                    </div>
+                    <div ng-cloak ng-if="category == 'Restaurant'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitRest(x.id,date)">Add</button>
+                    </div>
+                    <div ng-cloak ng-if="category == 'Housing'">
+                        <button type="submit" class="btn btn-primary" ng-click="submitHousing(x.id,date)">Add</button>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
     <div class="container map-container">
         <div id="map"></div>
-        <div class="form">
-            <form>
-                <div class="form-group">
-
-                    <label class="h2" for="listing_id">
-                        Listing ID
-                    </label>
-                    <input  class="form-control" id="listing_id" placeholder="Enter Listing ID" ng-model="id">
-                </div>
-                <label>Date:
-                    <select class="dropdown" ng-model="baths" ng-options="date for date in dateArray"></select>
-                </label>
-                <div ng-cloak ng-if="category == 'Activity'">
-                    <button type="submit" class="btn btn-primary" ng-click="submitAct(id,day)">Submit</button>
-                </div>
-                <div ng-cloak ng-if="category == 'Restaurant'">
-                    <button type="submit" class="btn btn-primary" ng-click="submitRest(id,day)">Submit</button>
-                </div>
-                <div ng-cloak ng-if="category == 'Housing'">
-                    <button type="submit" class="btn btn-primary" ng-click="submitHousing(id,day)">Submit</button>
-                </div>
-            </form>
-        </div>
 
     </div>
 </div>
