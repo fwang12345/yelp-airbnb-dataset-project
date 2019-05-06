@@ -153,9 +153,12 @@ app.controller('listingController', function ($scope, $http) {
   "American (New)", "Japanese", "Canadian (New)", "Asian Fusion", "Thai", "Mediterranean", "Korean", "Indian"];
   $scope.acts = ["Shopping", "Beauty & Spas", "Nightlife", "Active Life", "Arts & Entertainment", 
   "Fitness & Instruction", "Day Spas", "Massage"];
+
   $scope.days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-  $scope.searchHouse = function(city, beds, rooms, baths) {
-    if (city != null && beds != null && rooms != null && baths != null) {
+
+  $scope.searchHouse = function(beds, rooms, baths) {
+    if (beds != null && rooms != null && baths != null) {
+      var city = location;
       $scope.list_show = false;
       $scope.bus_show = false;
       var request = $http.get(`/house/${city}/${beds}/${rooms}/${baths}`);
@@ -166,8 +169,10 @@ app.controller('listingController', function ($scope, $http) {
       });
     }
   };
-  $scope.searchBus = function(city, category) {
-    if (city != null && category != null) {
+
+  $scope.searchBus = function(category) {
+    if (category != null) {
+      var city = location;
       $scope.list_show = false;
       $scope.bus_show = false;
       var request = $http.get(`/bus/${city}/${category}`);
@@ -385,6 +390,10 @@ app.controller('dashboardControl', function($scope, $http, myLocationService,myE
 });
 
 app.controller('newTripController', function ($scope, $http) {
+  if (sessionStorage.getItem('user') == null) {
+    window.location.href = "http://localhost:8801/"
+  }
+
   $scope.cities = ["Henderson", "Las Vegas", "Montreal", "Toronto"];
 
   $scope.createTrip = function() {
