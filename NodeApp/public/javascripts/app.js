@@ -142,11 +142,11 @@ app.controller('listingController', function ($scope, $http) {
       });
     }
   }
-  $scope.searchBus = function(category) {
+  $scope.searchBus = function(city, category) {
     if (category != null) {
       $scope.list_show = false;
       $scope.bus_show = false;
-      var request = $http.get(`/bus/${category}`);
+      var request = $http.get(`/bus/${city}/${category}`);
       request.success(function (response) {
         // success
         $scope.business = response;
