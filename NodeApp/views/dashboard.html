@@ -30,12 +30,20 @@
     </nav>
     <div class="container trips-container" ng-controller="dashboardControl">
         <div class="jumbotron">
-            <table class="table table-bordered">
-                <tr ng-repeat="trip in trips">
-                    <td>{{trip.name}}</td>
-                    <td>{{trip.location}}</td>
-                    <td>{{trip.start_date}}</td>
-                    <td>{{trip.end_date}}</td>
+              <span>
+                    <button type="button" class="login-button" name="new-trip" ng-click="edit()">Edit</button>
+
+                        </span>
+            <span>
+                    <button type="button" class="login-button" name="new-trip" ng-click="view()">View</button>
+                            </span>
+            <table class="table table-bordered" >
+                <tr ng-repeat="trip in trips" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index,trip.name,trip.location,trip.start_date,trip.end_date)">
+                    <td id = "row1">{{$index}}</td>
+                    <td id = "row2">{{trip.name}}</td>
+                    <td id = "row3">{{trip.location}}</td>
+                    <td id = "row4">{{trip.start_date}}</td>
+                    <td id = "row5">{{trip.end_date}}</td>
                 </tr>
             </table>
             <button type="button" class="login-button" name="new-trip" ng-click="newTrip()">New Trip</button>

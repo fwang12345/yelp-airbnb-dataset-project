@@ -1,4 +1,96 @@
 var app = angular.module('angularjsNodejsTutorial', []);
+
+app.factory('myTripIDService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.factory('myNameService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.factory('myLocationService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.factory('myEndDateService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.factory('myStartDateService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+app.factory('myUserService', function() {
+  var tripID = {};
+  function set(data) {
+    tripID = data;
+  }
+  function get() {
+    return tripID;
+  }
+
+  return {
+    set: set,
+    get: get
+  }
+});
+
+
 app.controller('loginController', function ($scope, $http) {
   $scope.verifyLogin = function () {
     var request = $http({
@@ -41,6 +133,7 @@ app.controller('listingController', function ($scope, $http) {
 });
 
 app.controller('createController', function ($scope, $http) {
+
   $scope.verifyCreate = function () {
     var request1 = $http({
       url: '/login',
@@ -82,7 +175,24 @@ app.controller('createController', function ($scope, $http) {
   };
 });
 
-app.controller('dashboardControl', function($scope, $http) {
+app.controller('dashboardControl', function($scope, $http, myLocationService,myEndDateService,myStartDateService,myNameService) {
+  $scope.selectedRow = null;  // initialize our variable to null
+  $scope.setClickedRow = function(index,name,location,start_date,end_date){  //function that sets the value of selectedRow to current index
+    $scope.selectedRow = index;
+    console.log(index);
+    myLocationService.set(location);
+    myEndDateService.set(end_date);
+    myNameService.set(name);
+    myStartDateService.set(start_date);
+  };
+
+  $scope.edit = function () {
+    window.location.href = "http://localhost:8081/listing"
+  };
+
+  $scope.view = function () {
+    window.location.href = "http://localhost:8081/trip"
+  };
   console.log($scope.trips);
   var user = sessionStorage.getItem('user');
   if (user == null) {
