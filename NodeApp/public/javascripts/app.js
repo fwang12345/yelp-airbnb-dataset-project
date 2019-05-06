@@ -147,21 +147,12 @@ app.controller('listingController', function ($scope, $http) {
     window.location.href = "http://localhost:8081/"
   }
 
-  var id = sessionStorage.getItem('id');
+  var trip_id = sessionStorage.getItem('id');
   var name = sessionStorage.getItem('name');
   var location = sessionStorage.getItem('location');
-  if (id == null) {
+  if (trip_id == null) {
     window.location.href = "http://localhost:8081/dashboard"
   }
-
-  $scope.trip = {
-    'user': user,
-    'id': parseInt(id),
-    'name': name,
-    'location': location,
-    'start_date': startdate,
-    'end_date': enddate
-  };
 
   $scope.orderByHousing = ["Name","Price", "Rating"];
   $scope.orderByActivity = ["Name","Rating", "Number of Reviews"];
@@ -202,8 +193,8 @@ app.controller('listingController', function ($scope, $http) {
     }
   };
   $scope.submitHousing = function(id,day){
-    var username = name;
-    var tripID = parseInt(id);
+    var username = user;
+    var tripID = parseInt(trip_id);
     var request2 = $http({
       url: '/addHouse',
       method: "POST",
@@ -224,8 +215,8 @@ app.controller('listingController', function ($scope, $http) {
   };
 
   $scope.submitRest = function(id,day){
-    var username = 'trevor';
-    var tripID = '1';
+    var username = user;
+    var tripID = parseInt(trip_id);
     var request2 = $http({
       url: '/addRest',
       method: "POST",
@@ -246,8 +237,8 @@ app.controller('listingController', function ($scope, $http) {
   };
 
   $scope.submitAct = function(id,day){
-    var username = 'trevor';
-    var tripID = '1';
+    var username = user;
+    var tripID = parseInt(trip_id);
     var request2 = $http({
       url: '/addAct',
       method: "POST",
@@ -287,15 +278,6 @@ app.controller('tripController', function ($scope, $http) {
     window.location.href = "http://localhost:8081/dashboard"
   }
 
-  $scope.trip = {
-    'user': user,
-    'id': parseInt(id),
-    'name': name,
-    'location': location,
-    'start_date': startdate,
-    'end_date': enddate
-  };
-
   var startdate_object = new Date(startdate);
   var enddate_object = new Date(enddate);
   enddate_object.setDate(enddate_object.getDate() + 1);
@@ -310,6 +292,59 @@ app.controller('tripController', function ($scope, $http) {
       currentDate.setDate(currentDate.getDate() + 1);
   }
   $scope.dateArray = readableDateArray;
+
+  $scope.getHouses = function(day) {
+    var request = $http({
+      url: '/doHouse',
+      method: 'GET',
+      params: {
+        username: user,
+        trip_id: id,
+        date: day
+      }
+    });
+    request.success(function (response) {
+      console.log(response);
+      return response;
+    });
+    request.error(function (err) {
+      console.log("error: ", err);
+    });
+  }
+  $scope.getActivities = function(day) {
+    var request = $http({
+      url: '/doActivity',
+      method: 'GET',
+      params: {
+        username: user,
+        trip_id: id,
+        date: day
+      }
+    });
+    request.success(function (response) {
+      return response;
+    });
+    request.error(function (err) {
+      console.log("error: ", err);
+    });
+  }
+  $scope.getRestaurants = function(day) {
+    var request = $http({
+      url: '/doRestaurant',
+      method: 'GET',
+      params: {
+        username: user,
+        trip_id: id,
+        date: day
+      }
+    });
+    request.success(function (response) {
+      return response;
+    });
+    request.error(function (err) {
+      console.log("error: ", err);
+    });
+  }
 
 });
 

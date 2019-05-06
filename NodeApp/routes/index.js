@@ -246,7 +246,7 @@ router.get('/house/:city/:beds/:rooms/:baths/:orderBy', function(req, res) {
   });
 });
 router.get('/bus/:city/:category/:orderBy', function(req, res) {
-  var city = req.params.city
+  var city = req.params.city;
   var category = req.params.category;
   var orderBy = req.params.orderBy;
   var query = `SELECT business_id, name, address, city, state, zipcode, stars, reviews
@@ -262,6 +262,45 @@ router.get('/bus/:city/:category/:orderBy', function(req, res) {
     else {
       res.json(rows);
       
+    }
+  });
+});
+router.get('/doHouse', function (req, res) {
+  var user = req.query.username;
+  var id = req.query.trip_id;
+  var date = req.query.date;
+  var query = `SELECT name FROM cis450project.doHousing JOIN cis450project.listing ON doHousing.housing_id = listing.id
+               WHERE user = '${user}' AND trip_id = '${id}' AND date = '${date}'`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+    }
+  });
+});
+router.get('/doActivity', function (req, res) {
+  var user = req.query.username;
+  var id = req.query.trip_id;
+  var date = req.query.date;
+  var query = `SELECT name FROM cis450project.doActivity JOIN cis450project.business ON doActivity.activity_id = business.business_id
+               WHERE user = '${user}' AND trip_id = '${id}' AND date = '${date}'`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+    }
+  });
+});
+router.get('/doRestaurant', function (req, res) {
+  var user = req.query.username;
+  var id = req.query.trip_id;
+  var date = req.query.date;
+  var query = `SELECT name FROM cis450project.doRestaurant JOIN cis450project.business ON doRestaurant.restaurant_id = business.business_id
+               WHERE user = '${user}' AND trip_id = '${id}' AND date = '${date}'`;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
     }
   });
 });
