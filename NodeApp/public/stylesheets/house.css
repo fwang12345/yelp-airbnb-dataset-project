@@ -31,3 +31,9 @@
   bottom:0;
   right:0;
 }
+
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}

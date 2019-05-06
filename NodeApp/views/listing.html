@@ -136,7 +136,7 @@
 <div class="container bottom-container">
     <h3 ng-show = "list_show">Listings:</h3>
     <div class="table">
-        <table ng-show="list_show" class="table table-bordered">
+        <table ng-show="list_show" class="table table-bordered" >
             <thead>
             <th>ID</th>
             <th>Name</th>
@@ -148,9 +148,9 @@
             <th>Reviews</th>
             <th>Rating</th>
             </thead>
-            <tr ng-repeat="x in listing">
-                <td>{{x.id}}</td>
-                <td>{{x.name}}</td>
+            <tr ng-repeat="x in listing" >
+                <td ng-click ="changeMap(x.latitude,x.longitude)">{{x.id}}</td>
+                <td ng-click ="changeMap(x.latitude,x.longitude)">{{x.name}}</td>
                 <td>{{x.zipcode}}</td>
                 <td>{{x.beds}}</td>
                 <td>{{x.bedrooms}}</td>
@@ -220,21 +220,39 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script async defer
+        src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBF_1Q4y-wEFw38GbhBY_GX2MgMpAcJKXE&callback=initMap">
+</script>
 <script>
     // Initialize and add the map
+    var map;
     function initMap() {
         // The location of Uluru
-        var uluru = {lat: -25.344, lng: 131.036};
+        var uluru  = {lat:-25.344, lng: 131.036};
         // The map, centered at Uluru
-        var map = new google.maps.Map(
+        map = new google.maps.Map(
             document.getElementById('map'), {zoom: 4, center: uluru});
         // The marker, positioned at Uluru
         var marker = new google.maps.Marker({position: uluru, map: map});
     }
+    function newLocation(newLat,newLng)
+    {
+        map.setCenter({
+            lat : newLat,
+            lng : newLng
+        });
+    }
+
+    //google.maps.event.addDomListener(window, 'load', initMap());
+
+    //Setting Location with jQuery
+    $(document).ready(function () {
+        $("#1").on('click', function () {
+            newLocation(48.1293954, 11.556663);
+        });
+    });
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBF_1Q4y-wEFw38GbhBY_GX2MgMpAcJKXE&callback=initMap">
-</script>
+
 
 </body>
 
